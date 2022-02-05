@@ -1,5 +1,13 @@
 #!/usr/bin/env node
 const INDEX_FILE = 'index.js';
+const PACKAGE_JSON_FILE = 'package.json';
+
+const indexModule = require('./src/express/' + INDEX_FILE);
+
+let modulePath = require.resolve('./' + PACKAGE_JSON_FILE);
+modulePath = modulePath.substring(0, modulePath.length - PACKAGE_JSON_FILE.length);
+console.debug("modulePath = ", modulePath);
+
 const yargs = require('yargs')
   .usage(`
 Usage: npx iconic [-v] [-p port] [-h]
@@ -43,10 +51,12 @@ function initializeLogging() {
 
 initializeLogging();
 
+const config = {
+  modulePath: modulePath,
+  iconRelativePath: argv.iconpath,
+  currentWorkingDir: process.cwd(),
+  port: argv.port,
+  debug: argv.debug
+};
 
-const indexModule = require('./' + INDEX_FILE);
-let buildPath = require.resolve('./' + INDEX_FILE);
-buildPath = buildPath.substring(0, buildPath.length - INDEX_FILE.length);
-console.debug("buildPath = ", buildPath);
-
-indexModule.startExpress(buildPath, process.cwd(), argv.iconpath, argv.port);
+indexModule.startExpress(config);
