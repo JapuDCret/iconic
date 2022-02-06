@@ -17,21 +17,41 @@ async function writeConfig(config) {
   }
 }
 
-async function getIcons(config) {
+async function findIcons(config, currentPath = config.iconPath, depth = 0) {
   let icons = [];
-  try {
-    let iconsNames = await fs.readdir(config.iconPath);
 
-    icons = iconsNames.map(e => {
-      return {
-        name: e,
-        filePath: path.join(config.iconPath, e),
-        alias: null
+  try {
+    const fileNames = await fs.readdir(currentPath);
+
+    for(const fileName of fileNames) {
+      const filePath = path.join(currentPath, fileName);
+
+      const fileInfo = await fs.lstat(filePath);
+
+      if(fileInfo.isDirectory()) {
+        icons = icons.concat(await findIcons(config, filePath, depth+1));
+      } else if(fileName.match(config.iconFileRegEx) != null) {
+        const relativeDir = currentPath.replaceAll(path.sep, '/').substring(config.iconPath.length+1) + '/';
+        icons.push({
+          name: fileName,
+          filePath: relativeDir + fileName,
+          directory: relativeDir,
+          alias: null,
+          depth: depth
+        });
       }
-    });
+    }
   } catch(err) {
-    console.error('getIcons(): Could not get icons, err = ', err);
+    console.error('findIcons(): Could not get icons, err = ', err);
   }
+
+  return icons;
+}
+
+async function getIcons(config) {
+  const icons = await findIcons(config);
+
+  console.debug('getIcons(): icons = ', icons);
 
   return icons;
 }

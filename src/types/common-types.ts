@@ -14,5 +14,7 @@ export interface AppConfig extends CliConfig {
 export interface Icon {
     name: string,
     filePath: string,
+    directory: string,
     alias: string | null,
+    depth: number,
 }

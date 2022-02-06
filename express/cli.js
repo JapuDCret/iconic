@@ -10,7 +10,7 @@ console.debug("modulePath = ", modulePath);
 
 const yargs = require('yargs')
   .usage(`
-Usage: npx japudcret-iconic --icon-path <path-to-icons> [-v] [-p port] [-h]
+Usage: npx japudcret-iconic --icon-path <path-to-icons> [-v] [-p port] [-r regex] [-h]
 `)
   .options({
     verbose: {
@@ -25,13 +25,18 @@ Usage: npx japudcret-iconic --icon-path <path-to-icons> [-v] [-p port] [-h]
     },
     'icon-path': {
       alias: 'i',
-      demandOption: true
+      demandOption: true,
+    },
+    regex: {
+      alias: 'r',
+      default: '([^\.]+)\.(apng|avif|gif|jpg|jpeg|ico|svg|png|webp)',
     },
   })
   .describe({
     verbose: 'Debug Mode',
     port: 'Port',
     'icon-path': 'Icon Path (e.g. src/icons/)',
+    regex: 'Regular Expression to find the icon files',
   })
   .help()
   .alias('h', 'help');
@@ -52,7 +57,8 @@ const config = {
   iconRelativePath: argv['icon-path'],
   currentWorkingDir: process.cwd(),
   port: argv.port,
-  debug: argv.verbose
+  debug: argv.verbose,
+  iconFileRegEx: argv.regex
 };
 
 indexModule.startExpress(config);

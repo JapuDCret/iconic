@@ -17,7 +17,7 @@ Basic usage `npx japudcret-iconic --icon-path src/icons/`
 ```bash
 $ npx japudcret-iconic -h
 
-Usage: npx japudcret-iconic --icon-path <path-to-icons> [-v] [-p port] [-h]
+Usage: npx japudcret-iconic --icon-path <path-to-icons> [-v] [-p port] [-r regex] [-h]
 
 
 Options:
@@ -25,6 +25,8 @@ Options:
   -v, --verbose    Debug Mode                         [boolean] [default: false]
   -p, --port       Port                                 [number] [default: 5000]
   -i, --icon-path  Icon Path (e.g. src/icons/)                        [required]
+  -r, --regex      Regular Expression to find the icon files
+                  [default: "([^.]+).(apng|avif|gif|jpg|jpeg|ico|svg|png|webp)"]
   -h, --help       Show help                                           [boolean]
 ```
 

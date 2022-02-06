@@ -1,8 +1,46 @@
 .App {
+}
+
+.optionContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 256px);
+  column-gap: 1rem;
+  row-gap: 1rem;
+  justify-items: left;
+  align-content: space-around;
+  padding: 1rem;
+}
+
+.iconContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 128px);
+  column-gap: 1rem;
+  row-gap: 1rem;
+  justify-items: center;
+}
+
+.iconWrapper {
   text-align: center;
 }
 
 .icon {
   height: 64px;
   pointer-events: none;
+}
+
+.iconWrapper p {
+  font-size: smaller;
+  text-align: left;
+  word-wrap: anywhere;
+}
+
+.iconInfo {
+  width: 384px;
+  background-color: #666;
+  display: none;
+  text-align: left;
+}
+
+.iconInfo.show {
+  display: block;
 }
