@@ -3,14 +3,14 @@
 [![Linux](https://svgshare.com/i/Zhy.svg)](https://svgshare.com/i/Zhy.svg)
 [![macOS](https://svgshare.com/i/ZjP.svg)](https://svgshare.com/i/ZjP.svg)
 [![Windows](https://svgshare.com/i/ZhY.svg)](https://svgshare.com/i/ZhY.svg)
-[![Npm package version](https://badgen.net/npm/v/japudcret/iconic)](https://npmjs.com/package/japudcret/iconic)
-[![Minimum node.js version](https://badgen.net/npm/node/japudcret/iconic)](https://npmjs.com/package/japudcret/iconic)
+[![Npm package version](https://badgen.net/npm/v/@japudcret/iconic)](https://npmjs.com/package/@japudcret/iconic)
+[![Minimum node.js version](https://badgen.net/npm/node/@japudcret/iconic)](https://npmjs.com/package/@japudcret/iconic)
 
 # Iconic - Simplify your Icon usage during development!
 
 This package provides a web ui for visualizing your icons and making them easier to find.
 
-Basic usage `npx japudcret-iconic --icon-path src/icons/`
+Basic usage `npx @@japudcret/iconic  --icon-path src/icons/`
 
 ## CLI
 
