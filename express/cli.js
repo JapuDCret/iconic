@@ -2,15 +2,15 @@
 const INDEX_FILE = 'index.js';
 const PACKAGE_JSON_FILE = 'package.json';
 
-const indexModule = require('./src/express/' + INDEX_FILE);
+const indexModule = require('./' + INDEX_FILE);
 
-let modulePath = require.resolve('./' + PACKAGE_JSON_FILE);
+let modulePath = require.resolve('../' + PACKAGE_JSON_FILE);
 modulePath = modulePath.substring(0, modulePath.length - PACKAGE_JSON_FILE.length);
 console.debug("modulePath = ", modulePath);
 
 const yargs = require('yargs')
   .usage(`
-Usage: npx iconic [-v] [-p port] [-h]
+Usage: npx japudcret-iconic --icon-path <path-to-icons> [-v] [-p port] [-h]
 `)
   .options({
     verbose: {
@@ -23,7 +23,7 @@ Usage: npx iconic [-v] [-p port] [-h]
       type: 'number',
       alias: 'p',
     },
-    iconpath: {
+    'icon-path': {
       alias: 'i',
       demandOption: true
     },
@@ -31,21 +31,17 @@ Usage: npx iconic [-v] [-p port] [-h]
   .describe({
     verbose: 'Debug Mode',
     port: 'Port',
-    iconpath: 'Icon Path (e.g. src/icons/)',
+    'icon-path': 'Icon Path (e.g. src/icons/)',
   })
   .help()
   .alias('h', 'help');
 
 const argv = yargs.argv;
 
-if (argv.debug) {
-  console.debugging = true;
-}
-
 function initializeLogging() {
-  console.debug = function() {
-    if(!console.debugging) return;
-    console.log.apply(this, arguments);
+  console.debug = function(message, ...optionalParams) {
+    if(!argv.verbose) return;
+    console.log.apply(this, [message, optionalParams]);
   };
 }
 
@@ -53,10 +49,10 @@ initializeLogging();
 
 const config = {
   modulePath: modulePath,
-  iconRelativePath: argv.iconpath,
+  iconRelativePath: argv['icon-path'],
   currentWorkingDir: process.cwd(),
   port: argv.port,
-  debug: argv.debug
+  debug: argv.verbose
 };
 
 indexModule.startExpress(config);

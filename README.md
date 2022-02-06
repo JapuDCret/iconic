@@ -10,30 +10,31 @@
 
 This package provides a web ui for visualizing your icons and making them easier to find.
 
-Basic usage `npx iconic --iconpath src/icons/`
+Basic usage `npx japudcret-iconic --icon-path src/icons/`
 
 ## CLI
 
 ```bash
-$ npx iconic -h
+$ npx japudcret-iconic -h
 
-Usage: npx iconic [-v] [-p port] [-h]
+Usage: npx japudcret-iconic --icon-path <path-to-icons> [-v] [-p port] [-h]
 
 
 Options:
-      --version   Show version number                                  [boolean]
-  -v, --verbose   Debug Mode                          [boolean] [default: false]
-  -p, --port      Port                                  [number] [default: 5000]
-  -i, --iconpath  Icon Path (e.g. src/icons/)                         [required]
-  -h, --help      Show help                                            [boolean]
+      --version    Show version number                                 [boolean]
+  -v, --verbose    Debug Mode                         [boolean] [default: false]
+  -p, --port       Port                                 [number] [default: 5000]
+  -i, --icon-path  Icon Path (e.g. src/icons/)                        [required]
+  -h, --help       Show help                                           [boolean]
 ```
-
 
 ## Development
 
 ### Local testing
 
-#### Start the express dev server
+You can locally test the functionality by starting the backend and the frontend separately.
+
+#### Start the backend (express dev server)
 
 Start a local server that will mimic the environment created by `npx`
 ```bash
@@ -42,9 +43,8 @@ npm run start-express
 
 This server uses only static source files found under `build/` and assumes you have icons under `test/`.
 
-### React dev server
+### Start the frontend (React dev server)
 
-TODO: Currently not working, as an Express server is expected
 ```bash
 npm run start-react
 ```

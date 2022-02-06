@@ -1,7 +1,6 @@
 {
   "name": "@japudcret/iconic",
   "version": "0.1.0",
-  "private": false,
   "license": "MIT",
   "author": {
     "name": "Marvin Kienitz",
@@ -15,7 +14,6 @@
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.4.0",
-    "@types/node": "^17.0.15",
     "@types/react": "^17.0.39",
     "@types/react-dom": "^17.0.11",
     "cors": "^2.8.5",
@@ -24,18 +22,18 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "5.0.0",
-    "typescript": "^4.5.5",
     "web-vitals": "^2.1.4"
   },
   "bin": {
-    "iconic": "./cli.js"
+    "japudcret-iconic": "./express/cli.js"
   },
   "scripts": {
+    "start-express": "nodemon express/cli.js -- --verbose --icon-path test",
     "start-react": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "npm run build-react",
+    "build-react": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "start-express": "nodemon src/express/index.js"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -54,5 +52,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/node": "^17.0.15",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.5"
   }
 }
