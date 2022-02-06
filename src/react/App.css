@@ -10,6 +10,12 @@
   align-content: space-around;
   padding: 1rem;
 }
+.optionContainer div {
+  justify-self: stretch;
+}
+.searchBar {
+  width: 100%;
+}
 
 .iconContainer {
   display: grid;
@@ -17,21 +23,25 @@
   column-gap: 1rem;
   row-gap: 1rem;
   justify-items: center;
+  padding: 1rem;
 }
 
 .iconWrapper {
   text-align: center;
 }
-
-.icon {
-  height: 64px;
-  pointer-events: none;
-}
-
 .iconWrapper p {
   font-size: smaller;
   text-align: left;
   word-wrap: anywhere;
+}
+
+.icon {
+  height: 64px;
+  pointer-events: none;
+  user-select: none;
+}
+.icon.selected {
+  background-color: #999;
 }
 
 .iconInfo {

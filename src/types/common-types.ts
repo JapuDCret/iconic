@@ -17,4 +17,5 @@ export interface Icon {
     directory: string,
     alias: string | null,
     depth: number,
+    hash: number,
 }

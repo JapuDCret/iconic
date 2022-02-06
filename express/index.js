@@ -5,6 +5,8 @@ const cors = require('cors');
 
 var packageJson = require('../package.json');
 
+const { hashCyrb53 } = require('./util.js');
+
 const PUBLIC_DIR = 'build/';
 
 async function writeConfig(config) {
@@ -32,12 +34,14 @@ async function findIcons(config, currentPath = config.iconPath, depth = 0) {
         icons = icons.concat(await findIcons(config, filePath, depth+1));
       } else if(fileName.match(config.iconFileRegEx) != null) {
         const relativeDir = currentPath.replaceAll(path.sep, '/').substring(config.iconPath.length+1) + '/';
+        const relativeFilePath = relativeDir + fileName
         icons.push({
           name: fileName,
-          filePath: relativeDir + fileName,
+          filePath: relativeFilePath,
           directory: relativeDir,
           alias: null,
-          depth: depth
+          depth: depth,
+          hash: hashCyrb53(relativeFilePath),
         });
       }
     }
