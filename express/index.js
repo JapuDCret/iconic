@@ -33,7 +33,10 @@ async function findIcons(config, currentPath = config.iconPath, depth = 0) {
       if(fileInfo.isDirectory()) {
         icons = icons.concat(await findIcons(config, filePath, depth+1));
       } else if(fileName.match(config.iconFileRegEx) != null) {
-        const relativeDir = currentPath.replaceAll(path.sep, '/').substring(config.iconPath.length+1) + '/';
+        console.log('findIcons(): config.iconPath: ', config.iconPath);
+        console.log('findIcons(): currentPath: ', currentPath);
+        const relativeDir = currentPath.replaceAll(path.sep, '/').substring(config.iconPath.length) + '/';
+        console.log('findIcons(): relativeDir: ', relativeDir);
         const relativeFilePath = relativeDir + fileName
         icons.push({
           name: fileName,
@@ -65,7 +68,7 @@ async function startExpress(cliConfig) {
   console.log('startExpress(): cliConfig: ', cliConfig);
 
   const buildPath = path.join(cliConfig.modulePath, PUBLIC_DIR)
-  const iconPath = path.join(cliConfig.currentWorkingDir, cliConfig.iconRelativePath);
+  const iconPath = path.join(cliConfig.currentWorkingDir, cliConfig.iconRelativePath + '/');
   const config = {
     ...cliConfig,
     buildPath,
