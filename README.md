@@ -62,7 +62,7 @@ npm pack
 
 Publish the package to your local (global) repository
 ```bash
-npm install -g japudcret-iconic-0.1.0.tgz
+npm install -g japudcret-iconic-0.2.0.tgz
 ```
 
 Afterwards you can use `npx iconic` to test your latest version.
